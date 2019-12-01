@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const dummy_props = [
   {
@@ -22,7 +23,8 @@ const dummy_props = [
     country: "italy"
   }
 ];
-function Potato(props) {
+
+function Food(props) {
   return (
     <h1>
       I like {props.name} from {props.country}
@@ -30,12 +32,17 @@ function Potato(props) {
   );
 }
 
+Food.propTypes = {
+  name: PropTypes.string.isRequired,
+  country: PropTypes.string.isRequired
+};
+
 function App() {
   return (
     <div className="App">
       <h1>Hello world!</h1>
       {dummy_props.map(item => (
-        <Potato key={item.id} name={item.name} country={item.country} />
+        <Food key={item.id} name={item.name} country={item.country} />
       ))}
     </div>
   );
