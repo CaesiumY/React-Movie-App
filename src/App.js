@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { MOVIE_API_KEY } from "./tokens.json";
+
+import Movie from "./Movie";
 
 export default class App extends Component {
   state = {
@@ -11,30 +12,24 @@ export default class App extends Component {
   getMovieData = async () => {
     const {
       data: {
-        movieListResult: { movieList }
+        data: { movies }
       }
-    } = await axios.get(
-      `http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json?key=${MOVIE_API_KEY}`
-    );
-    console.log(movieList);
-    this.setState({ movies: movieList });
+    } = await axios.get("https://yts-proxy.now.sh/list_movies.json");
+    console.log(movies);
+    this.setState({ movies, isLoading: false });
   };
 
   componentDidMount() {
     this.getMovieData();
-    this.setState({ isLoading: false });
   }
 
   render() {
     const { isLoading, movies } = this.state;
     return (
       <div>
-        <div>{isLoading ? "Loading..." : "We are ready"}</div>
-        <div>
-          {movies.map(movie => (
-            <p>{movie.movieNm}</p>
-          ))}
-        </div>
+        <div>{isLoading ? "Loading..." : movies.map( movie => (
+          <Movie key={movie.id} id={movie.id} title={movie.title} year={movie.year} summary={movie.summary} poster={movie.medium_cover_image} />
+        ))}</div>
       </div>
     );
   }
