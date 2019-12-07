@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 
 import Movie from "./Movie";
+import "./css/App.css";
 
 export default class App extends Component {
   state = {
@@ -26,11 +27,28 @@ export default class App extends Component {
   render() {
     const { isLoading, movies } = this.state;
     return (
-      <div>
-        <div>{isLoading ? "Loading..." : movies.map( movie => (
-          <Movie key={movie.id} id={movie.id} title={movie.title} year={movie.year} summary={movie.summary} poster={movie.medium_cover_image} />
-        ))}</div>
-      </div>
+      <section class="section">
+        <div>
+          {isLoading ? (
+            <div className="loader">
+              <p className="loader__text">"Loading..."</p>
+            </div>
+          ) : (
+            <div class="movies">
+              {movies.map(movie => (
+                <Movie
+                  key={movie.id}
+                  id={movie.id}
+                  title={movie.title}
+                  year={movie.year}
+                  summary={movie.summary}
+                  poster={movie.medium_cover_image}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
     );
   }
 }
