@@ -27,27 +27,25 @@ export default class App extends Component {
   render() {
     const { isLoading, movies } = this.state;
     return (
-      <section class="section">
-        <div>
-          {isLoading ? (
-            <div className="loader">
-              <p className="loader__text">"Loading..."</p>
-            </div>
-          ) : (
-            <div class="movies">
-              {movies.map(movie => (
-                <Movie
-                  key={movie.id}
-                  id={movie.id}
-                  title={movie.title}
-                  year={movie.year}
-                  summary={movie.summary}
-                  poster={movie.medium_cover_image}
-                />
-              ))}
-            </div>
-          )}
-        </div>
+      <section className="section">
+        {isLoading ? (
+          <div className="loader">
+            <p className="loader__text">Loading...</p>
+          </div>
+        ) : (
+          <div className="movies">
+            {movies.map(movie => (
+              <Movie
+                key={movie.id}
+                id={movie.id}
+                title={movie.title}
+                year={movie.year}
+                summary={movie.summary}
+                poster={movie.medium_cover_image}
+              />
+            ))}
+          </div>
+        )}
       </section>
     );
   }
