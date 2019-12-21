@@ -27,7 +27,7 @@ export default class App extends Component {
   render() {
     const { isLoading, movies } = this.state;
     return (
-      <section className="section">
+      <section className="container">
         {isLoading ? (
           <div className="loader">
             <p className="loader__text">Loading...</p>
