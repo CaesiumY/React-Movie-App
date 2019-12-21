@@ -2,6 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./css/Movie.css";
 
+let MORE = false;
+
+function handleClickMore(e) {
+  MORE = true;
+  console.log(MORE);
+}
+
 function Movie({ id, title, year, summary, poster, genres }) {
   return (
     <div className="movie">
@@ -16,7 +23,15 @@ function Movie({ id, title, year, summary, poster, genres }) {
             </li>
           ))}
         </ul>
-        <p className="movie__summary">{summary}</p>
+        {MORE ? (
+          <p className="movie__summary">{summary}...</p>
+        ) : (
+          <p className="movie__summary">{summary.slice(0, 180)}...</p>
+        )}
+
+        <button className="movie__moreBtn" onClick={handleClickMore}>
+          more
+        </button>
       </div>
     </div>
   );
