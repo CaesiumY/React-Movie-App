@@ -70,3 +70,7 @@
   margin-right: 10px;
   font-size: 1rem;
 }
+
+.movie__info {
+  overflow: hidden;
+}
