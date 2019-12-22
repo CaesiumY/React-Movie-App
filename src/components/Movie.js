@@ -10,7 +10,7 @@ function Movie({ id, title, year, summary, poster, genres }) {
     <div className="movie">
       <Link
         to={{
-          pathname: "/movie-detail",
+          pathname: `/movie/${id}`,
           state: {
             id,
             title,
